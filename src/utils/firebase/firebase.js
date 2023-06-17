@@ -1,6 +1,12 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithRedirect, signInWithPopup, GoogleAuthProvider, createUserWithEmailAndPassword } from 'firebase/auth';
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
+import {
+    getAuth,
+    signInWithPopup,
+    GoogleAuthProvider,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+} from 'firebase/auth';
+import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: 'AIzaSyC-qiEaPE0NqatvVmjZJQnEZ-W270k-8TY',
@@ -20,16 +26,16 @@ googleProvider.setCustomParameters({
 });
 
 export const auth = getAuth();
-export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
+export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
 
-export const db = getFirestore()
+export const db = getFirestore();
 
 export const createUserDocumentFromAuth = async (userAuth, additionalInformation = {}) => {
     if (!userAuth) return;
 
-    const userDocRef = await doc(db, 'users', userAuth.uid)
+    const userDocRef = await doc(db, 'users', userAuth.uid);
 
-    const userSnapshot = await getDoc(userDocRef)
+    const userSnapshot = await getDoc(userDocRef);
 
     if (!userSnapshot.exists()) {
         const { displayName, email } = userAuth;
@@ -41,16 +47,21 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
                 email,
                 createdAt,
                 ...additionalInformation,
-            })
+            });
         } catch (err) {
             console.log('error creating the user', err.message);
         }
     }
 
     return userDocRef;
-}
+};
 
 export const createAuthUserWithEmailAndPassword = async (email, password) => {
     if (!email || !password) return;
-    return await createUserWithEmailAndPassword(auth, email, password)
-}
+    return await createUserWithEmailAndPassword(auth, email, password);
+};
+
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+    if (!email || !password) return;
+    return await signInWithEmailAndPassword(auth, email, password);
+};
