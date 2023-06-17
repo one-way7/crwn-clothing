@@ -19,7 +19,7 @@ const Home = () => {
         },
         {
             id: 4,
-            title: 'womens',
+            title: 'women\'s',
             imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
         },
         {
@@ -30,7 +30,7 @@ const Home = () => {
     ];
 
     return (
-        <CategoryMenu categories={categories}/>
+        <CategoryMenu categories={categories} />
     );
 };
 
