@@ -17,16 +17,18 @@ const Navigation = () => {
     const { currentUser } = useContext(UserContext);
     const { isCartOpen } = useContext(CartContext)
 
+    const handleSignOut = () => signOutUser()
+
     return (
         <Fragment>
             <NavigationContainer>
                 <Logo to='/'>
-                    <CrwnLogo className='logo' />
+                    <CrwnLogo />
                 </Logo>
                 <NavLinks>
                     <NavLink to='/shop'>SHOP</NavLink>
                     {
-                        currentUser ? (<NavLink as='span' className='nav-link' onClick={signOutUser}>SIGN OUT</NavLink>) : (
+                        currentUser ? (<NavLink as='span' onClick={handleSignOut}>SIGN OUT</NavLink>) : (
                             <NavLink to='/auth'>SIGN IN</NavLink>)
                     }
                     <CartIcon />
