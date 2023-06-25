@@ -30,6 +30,20 @@ googleProvider.setCustomParameters({
 export const auth = getAuth();
 export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider);
 
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+    if (!email || !password) return;
+    return await createUserWithEmailAndPassword(auth, email, password);
+};
+
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+    if (!email || !password) return;
+    return await signInWithEmailAndPassword(auth, email, password);
+};
+
+export const signOutUser = async () => await signOut(auth);
+
+export const onAuthStateChangedListener = callback => onAuthStateChanged(auth, callback);
+
 export const db = getFirestore();
 
 export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => {
@@ -46,6 +60,7 @@ export const addCollectionAndDocuments = async (collectionKey, objectsToAdd) => 
 };
 
 export const getCategoriesAndDocuments = async () => {
+
     const collectionRef = collection(db, 'categories');
     const q = query(collectionRef);
 
@@ -84,17 +99,3 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInformation
 
     return userDocRef;
 };
-
-export const createAuthUserWithEmailAndPassword = async (email, password) => {
-    if (!email || !password) return;
-    return await createUserWithEmailAndPassword(auth, email, password);
-};
-
-export const signInAuthUserWithEmailAndPassword = async (email, password) => {
-    if (!email || !password) return;
-    return await signInWithEmailAndPassword(auth, email, password);
-};
-
-export const signOutUser = async () => await signOut(auth);
-
-export const onAuthStateChangedListener = callback => onAuthStateChanged(auth, callback);
