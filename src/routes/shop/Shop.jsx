@@ -9,12 +9,12 @@ import CategoriesPreview from '../categoriesPreview/CategoriesPreview';
 import Category from '../category/Category';
 
 const Shop = () => {
-    const gispatch = useDispatch()
+    const dispatch = useDispatch()
 
     useEffect(() => {
         const getCategoriesMap = async () => {
             const categoriesArray = await getCategoriesAndDocuments();
-            gispatch(setCategories(categoriesArray));
+            dispatch(setCategories(categoriesArray));
         };
         getCategoriesMap()
     }, []);
