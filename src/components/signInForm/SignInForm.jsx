@@ -26,7 +26,8 @@ const SignInForm = () => {
         const { value, name } = e.target;
 
         setFormFields(prevState => ({
-            ...prevState, [name]: value,
+            ...prevState,
+            [name]: value,
         }));
     };
 
@@ -38,17 +39,22 @@ const SignInForm = () => {
         e.preventDefault();
 
         try {
-            const { user } = await signInAuthUserWithEmailAndPassword(email, password);
+            const { user } = await signInAuthUserWithEmailAndPassword(
+                email,
+                password,
+            );
             resetFormFields();
         } catch (err) {
             switch (err.code) {
-                case 'auth/wrong-password': {
-                    alert('Incorrect password for email');
-                }
+                case 'auth/wrong-password':
+                    {
+                        alert('Incorrect password for email');
+                    }
                     break;
-                case 'auth/user-not-found': {
-                    alert('No user associated with this email');
-                }
+                case 'auth/user-not-found':
+                    {
+                        alert('No user associated with this email');
+                    }
                     break;
                 default: {
                     console.log(err);
@@ -62,12 +68,31 @@ const SignInForm = () => {
             <h2>Already have an account?</h2>
             <span>Sign in with your email and password</span>
             <form onSubmit={e => handleSubmit(e, email, password)}>
-                <FormInput label='Email' type='email' required value={email} name='email' onChange={handleChange} />
-                <FormInput label='Password' type='password' required value={password} name='password'
-                           onChange={handleChange} />
+                <FormInput
+                    label="Email"
+                    type="email"
+                    required
+                    value={email}
+                    name="email"
+                    onChange={handleChange}
+                />
+                <FormInput
+                    label="Password"
+                    type="password"
+                    required
+                    value={password}
+                    name="password"
+                    onChange={handleChange}
+                />
                 <ButtonsContainer>
-                    <Button type='submit'>Sign In</Button>
-                    <Button type='button' buttonType={BUTTON_TYPE_CLASSES.google} onClick={signInWithGoogle}>Sign In With Google</Button>
+                    <Button type="submit">Sign In</Button>
+                    <Button
+                        type="button"
+                        buttonType={BUTTON_TYPE_CLASSES.google}
+                        onClick={signInWithGoogle}
+                    >
+                        Sign In With Google
+                    </Button>
                 </ButtonsContainer>
             </form>
         </SignInContainer>

@@ -5,12 +5,17 @@ import { selectCartItems } from '../../store/cart/cartSelector';
 
 import Button, { BUTTON_TYPE_CLASSES } from '../button/Button';
 
-import { ProductCartContainer, Name, Price, Footer } from './ProductsCardStyles';
+import {
+    ProductCartContainer,
+    Name,
+    Price,
+    Footer,
+} from './ProductsCardStyles';
 
 const ProductsCard = ({ product }) => {
     const { name, price, imageUrl } = product;
-    const dispatch = useDispatch()
-    const cartItems = useSelector(selectCartItems)
+    const dispatch = useDispatch();
+    const cartItems = useSelector(selectCartItems);
 
     const addProductToCart = () => dispatch(addItemToCart(cartItems, product));
 
@@ -21,7 +26,12 @@ const ProductsCard = ({ product }) => {
                 <Name>{name}</Name>
                 <Price>{price}</Price>
             </Footer>
-            <Button buttonType={BUTTON_TYPE_CLASSES.inverted} onClick={addProductToCart}>Add to card</Button>
+            <Button
+                buttonType={BUTTON_TYPE_CLASSES.inverted}
+                onClick={addProductToCart}
+            >
+                Add to card
+            </Button>
         </ProductCartContainer>
     );
 };

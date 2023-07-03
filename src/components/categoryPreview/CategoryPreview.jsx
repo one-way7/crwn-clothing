@@ -1,6 +1,10 @@
 import ProductsCard from '../productCard/ProductsCard';
 
-import { CategoryPreviewContainer, Title, Preview, } from './CategoryPreviewStyles';
+import {
+    CategoryPreviewContainer,
+    Title,
+    Preview,
+} from './CategoryPreviewStyles';
 
 const CategoryPreview = ({ title, products }) => {
     return (
@@ -9,13 +13,11 @@ const CategoryPreview = ({ title, products }) => {
                 <Title to={title}>{title.toUpperCase()}</Title>
             </h2>
             <Preview>
-                {
-                    products
-                        .filter((_, idx) => idx < 4)
-                        .map(product => (
-                            <ProductsCard key={product.id} product={product} />
-                        ))
-                }
+                {products
+                    .filter((_, idx) => idx < 4)
+                    .map(product => (
+                        <ProductsCard key={product.id} product={product} />
+                    ))}
             </Preview>
         </CategoryPreviewContainer>
     );
