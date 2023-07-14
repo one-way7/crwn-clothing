@@ -32,3 +32,5 @@ A fictional **online clothing store** made with **React** (_see [Live Demo](http
     -   cart items
     -   user session
 -   Lazily loaded routes via route-based code
+#
+![crwn-clothing-gif](https://github.com/one-way7/crwn-clothing/assets/121254183/4d0edbc7-0923-4254-abb0-ff5682f623eb)
